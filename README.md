@@ -3,9 +3,9 @@ This is the Battle UI hi-fi prototype of our RPG Project in course CSC318.
 
 ## TODO List
 - [x] Enemy's portrait and health bar
-- [ ] Enemy's name
-- [ ] Player's portrait and health bar
-- [ ] Player's name
+- [x] Enemy's name
+- [x] Player's portrait and health bar
+- [x] Player's name
 - [ ] Enemy's figure
 - [ ] Player's figure
 - [ ] Rurn counter
