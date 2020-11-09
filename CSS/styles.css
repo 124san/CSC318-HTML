@@ -68,3 +68,16 @@
     margin-top: 469px;
     margin-left: 10px;
 }
+.playfield {
+    width: 500px;
+    height: 400px;
+}
+.playfield img{
+    width:300px;
+    height:300px;
+    display: block;
+}
+#p1{
+    margin-left: 800px;
+    margin-top: 200px;
+}
