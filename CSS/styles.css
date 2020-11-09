@@ -54,3 +54,17 @@
     border-bottom: 0px;
     margin-left: -1px;
 }
+
+.name {
+    position: absolute;
+    font-weight: bold;
+}
+.name.enemy{
+    margin-left: 1020px;
+    margin-top: 53px;
+    text-align: center;
+}
+.name.player{
+    margin-top: 469px;
+    margin-left: 10px;
+}
