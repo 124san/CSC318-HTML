@@ -3,3 +3,34 @@
     border: 3px solid black;
     height: 641.25px;
 }
+
+#enemy_portrait_container {
+    /* float: right; */
+    position: absolute;
+    margin-left: 1037px;
+    border-bottom: 3px solid black;
+    border-left: 3px solid black;
+}
+
+.col-5 {
+    border: 3px solid black;
+    border-top: 0px;
+    padding: 0px;
+}
+
+.progress {
+    border-radius: 0px;
+}
+
+.hp_bar {
+    height: 25px;
+    border-bottom: 3px solid black;
+}
+
+.mp_bar {
+    height: 15px;
+}
+
+#enemy_portrait {
+    width: 94px;
+}
