@@ -124,3 +124,46 @@
     margin-top:-67px;
     margin-left: 1022px;
 }
+
+#dialogue_portrait_container {
+    background-color: white;
+    margin-left: -18px;
+    margin-top: -197px;
+    position: absolute;
+    border: 3px solid black;
+    width: 200px;
+    height: 200px;
+}
+
+.dialogue_portrait {
+    width: 194px;
+}
+
+#dialogue_container {
+    background-color: white;
+    margin-left: 179px;
+    margin-top: -147px;
+    padding: 5px;
+    padding-left: 10px;
+    font-size: 120%;
+    position: absolute;
+    border: 3px solid black;
+    width: 943px;
+    height: 150px;
+    z-index: 3;
+}
+
+#dialogue_name_container {
+    text-align: center;
+    background-color: white;
+    margin-left: 179px;
+    margin-top: -197px;
+    padding-top: 8px;
+    font-size: 120%;
+    font-weight: bold;
+    position: absolute;
+    border: 3px solid black;
+    width: 150px;
+    height: 53px;
+    z-index: 3;
+}

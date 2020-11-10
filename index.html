@@ -69,7 +69,15 @@
             </div>
         </div>
         <!-- Element below this point are not shown 100% of the time -->
-        <!-- The element above will cover all elements below it -->
+        
+        <div id="dialogue_ui_container">
+            <div id="dialogue_portrait_container"><img class="dialogue_portrait" src="./Images/d_colon.png" alt="Dialogue Portrait"></div>
+            <div id="dialogue_name_container">Player</div>
+            <div id="dialogue_container">
+                <p>I'm inevitable</p>
+            </div>
+        </div>
+
         <!-- Action selection panel -->
         <div class="d-flex flex-column" id="action_select">
             <div class="p-3" id="attack">Attack</div>
@@ -95,6 +103,7 @@
     <button onclick="toggleUI('action_select', 'd-flex flex-column')">Toggle action select</button>
     <button onclick="toggleUI('back_button')">Toggle back button</button>
     <button onclick="toggleUI('skill_select', 'd-flex flex-column')">Toggle skill select</button>
+    <button onclick="toggleUI('dialogue_ui_container')">Toggle dialogue</button>
 </body>
 
 </html>

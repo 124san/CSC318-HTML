@@ -13,7 +13,7 @@ This is the Battle UI hi-fi prototype of our RPG Project in course CSC318.
 - [ ] "Attack" functionality
 - [ ] "Guard" functionality
 - [ ] "Item" functionality
-- [ ] "Skills" functionality
+- [X] "Skills" functionality
 - [ ] Choose target functionality
 - [ ] "Guard" Dialogue
 - [ ] "Escape" Dialogue
