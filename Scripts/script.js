@@ -1,7 +1,12 @@
-function toggle_panel() {
-    var x = document.getElementById("action_select");
+/**
+ * Toggle the visibility of an element given ID
+ * @param {*} elementID id of the element
+ * @param {*} className class name of the element, default is empty
+ */
+function toggleUI(elementID, className="") {
+    var x = document.getElementById(elementID);
     if (x.className === "d-none") {
-        x.className = "d-flex flex-column";
+        x.className = className;
     } else {
         x.className = "d-none"; 
     }

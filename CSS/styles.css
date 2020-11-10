@@ -78,7 +78,7 @@
     height:300px;
 }
 #p1 img{
-    position: absolute;
+    position: fixed;
     margin-left: 750px;
     margin-top: 20px;
     width:200px;
@@ -98,17 +98,6 @@
     border: 3px solid black;
 }
 
-#action_select ul li {
-    text-align: center;
-    width: 297px;
-    height: 70px;
-    border-bottom: 3px solid black;
-	font-size: 150%;
-    font-weight: bold;
-
-	/* Add properties below */
-	display:inline-block;
-}
 .p-3 {
     background-color: white;
     text-align: center;
