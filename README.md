@@ -9,7 +9,7 @@ This is the Battle UI hi-fi prototype of our RPG Project in course CSC318.
 - [x] Enemy's figure
 - [x] Player's figure
 - [ ] Turn counter
-- [ ] Action selection panel
+- [x] Action selection panel
 - [ ] "Attack" functionality
 - [ ] "Guard" functionality
 - [ ] "Item" functionality
