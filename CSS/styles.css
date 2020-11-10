@@ -77,10 +77,12 @@
     width:300px;
     height:300px;
 }
-#p1{
+#p1 img{
     position: absolute;
-    margin-left: 700px;
-    margin-top: 30px;
+    margin-left: 750px;
+    margin-top: 20px;
+    width:200px;
+    height:300px;
 }
 #p2{
     position: absolute;
