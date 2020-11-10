@@ -11,9 +11,9 @@
 
 
     <div class="container" id="main_frame">
+        <!-- Enemy portrait & resource bar -->
         <div class="row">
             <div class="col-6">
-                
             </div>
             <div class="col-5" id="enemy_bar">
                 <div class="progress hp_bar">
@@ -33,6 +33,7 @@
         <div class="name enemy">
             Troublesome<br>Guy
         </div>
+        <!-- Player & Enemy figures -->
         <div class="playfield" id="subframe">
             <div class="player_view" id="p1">
                 <img src="images/player.jpg"/>
@@ -41,10 +42,12 @@
                 <img src="images/player2.jpg"/>
             </div>
         </div>
+        
+        <!-- Player portrait & resource bar -->
         <div class="name player">
             Player
         </div>
-        <div class="row" id ="bottom">
+        <div class="row" id="bottom">
             <div id="player_portrait_container">
                 <img class="portrait" src="./Images/d_colon.png" alt="Enemy Portrait">
             </div>
@@ -62,6 +65,14 @@
             <div class="col-6">
                 
             </div>
+        </div>
+        <!-- Action selection panel -->
+        <div class="d-flex flex-column " id="action_select">
+            <div class="p-3">Attack</div>
+            <div class="p-3">Skill</div>
+            <div class="p-3">Guard</div>
+            <div class="p-3">Item</div>
+            <div class="p-3" style="height:67px;">Escape</div>
         </div>
     </div>
 
