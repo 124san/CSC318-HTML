@@ -9,8 +9,9 @@
 
 <body>
     <script src="./Scripts/script.js"></script>
-
+    
     <div class="container" id="main_frame">
+        
         <!-- Enemy portrait & resource bar -->
         <div class="row">
             <div class="col-6">
@@ -74,10 +75,15 @@
             <div class="p-3">Item</div>
             <div class="p-3" style="height:67px;">Escape</div>
         </div>
+        <!-- Back button. Not visible due to "d-none" -->
+        <div class="d-none" id="back_button">
+            Back
+        </div>
+        
     </div>
     <!-- Test button -->
     <button onclick="toggleUI('action_select', 'd-flex flex-column')">Toggle action select</button>
-    <button onclick="toggleUI('player_bar', 'col-5')">Toggle player portrait and bar</button>
+    <button onclick="toggleUI('back_button')">Toggle back button</button>
 </body>
 
 </html>
