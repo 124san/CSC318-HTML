@@ -31,6 +31,7 @@ function setUI(on, elementID, className="") {
 $(document).ready(function(){
     $('div#back_button').click(function(){
         setUI(false,'skill_select', 'd-flex flex-column')
+        setUI(false,'item_select', 'd-flex flex-column')
         setUI(true,'action_select', 'd-flex flex-column')
         setUI(false, 'back_button')
     });
@@ -39,6 +40,10 @@ $(document).ready(function(){
     });
     $('div#skill').click(function(){
         toggleUI('skill_select', 'd-flex flex-column')
+        toggleUI('back_button')
+    });
+    $('div#item').click(function(){
+        toggleUI('item_select', 'd-flex flex-column')
         toggleUI('back_button')
     });
 });
