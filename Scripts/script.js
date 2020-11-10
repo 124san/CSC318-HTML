@@ -11,3 +11,13 @@ function toggleUI(elementID, className="") {
         x.className = "d-none"; 
     }
 }
+
+// JQuery
+$(document).ready(function(){
+    $('div#back_button').click(function(){
+        alert("go back!");
+    });
+    $('div#attack').click(function(){
+        alert("attack!");
+    });
+});
