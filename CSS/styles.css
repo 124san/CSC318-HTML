@@ -46,7 +46,7 @@
 }
 
 #bottom {
-    margin-top: 95px;
+    margin-top: 495px;
 }
 
 #player_bar {
@@ -65,10 +65,11 @@
     text-align: center;
 }
 .name.player{
-    margin-top: 69px;
+    margin-top: 469px;
     margin-left: 10px;
 }
 .playfield {
+    position: absolute;
     width: 1000px;
     height: 200px;
 }
@@ -77,9 +78,12 @@
     height:300px;
 }
 #p1{
-    margin-left: 750px;
-    margin-top: 200px;
+    position: absolute;
+    margin-left: 700px;
+    margin-top: 30px;
 }
 #p2{
+    position: absolute;
+    margin-top: 200px;
     margin-left:75px;
 }
