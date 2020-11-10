@@ -89,7 +89,8 @@
     margin-top: 200px;
     margin-left:75px;
 }
-#action_select {
+.d-flex.flex-column {
+    background-color: white;
     position: absolute;
     margin-top: -347px;
     margin-left: 822px;
@@ -97,13 +98,16 @@
     height: 350px;
     border: 3px solid black;
 }
-
 .p-3 {
-    background-color: white;
     text-align: center;
     font-size: 150%;
     font-weight: bold;
     height: 70px;
+    border-bottom: 3px solid black;
+}
+
+.p-2 {
+    font-weight: bold;
     border-bottom: 3px solid black;
 }
 

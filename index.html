@@ -68,6 +68,8 @@
                 
             </div>
         </div>
+        <!-- Element below this point are not shown 100% of the time -->
+        <!-- The element above will cover all elements below it -->
         <!-- Action selection panel -->
         <div class="d-flex flex-column" id="action_select">
             <div class="p-3" id="attack">Attack</div>
@@ -75,6 +77,13 @@
             <div class="p-3" id="guard">Guard</div>
             <div class="p-3" id="item">Item</div>
             <div class="p-3" id="Escape" style="height:67px;">Escape</div>
+        </div>
+        <!-- Skill Selection -->
+        <div class="d-none" id="skill_select">
+            <div class="p-2" id="blade_bash">⚔️Blade Bash &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                20MP
+            </div>
+            
         </div>
         <!-- Back button. Not visible due to "d-none" -->
         <div class="d-none" id="back_button">
@@ -85,6 +94,7 @@
     <!-- Test button -->
     <button onclick="toggleUI('action_select', 'd-flex flex-column')">Toggle action select</button>
     <button onclick="toggleUI('back_button')">Toggle back button</button>
+    <button onclick="toggleUI('skill_select', 'd-flex flex-column')">Toggle skill select</button>
 </body>
 
 </html>
