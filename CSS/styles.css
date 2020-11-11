@@ -168,6 +168,22 @@
     z-index: 3;
 }
 
+#dialogue_next_button {
+    text-align: center;
+    background-color: white;
+    margin-left: 972px;
+    margin-top: -50px;
+    padding-top: 8px;
+    font-size: 120%;
+    font-weight: bold;
+    position: absolute;
+    border-bottom: 3px solid black;
+    border-right: 3px solid black;
+    width: 150px;
+    height: 53px;
+    z-index: 4;
+}
+
 #turn_counter{
     position: absolute;
     font-family: 'Courier New', Courier, monospace;

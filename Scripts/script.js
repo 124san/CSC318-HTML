@@ -1,3 +1,7 @@
+// Global variables
+"use strict";
+var firstTimeGuard = true;
+var dialogueNext = false;
 /**
  * Toggle the visibility of an element given ID
  * @param {*} elementID id of the element
@@ -27,7 +31,36 @@ function setUI(on, elementID, className="") {
     }
 }
 
-// JQuery
+/**
+ * Helper function that waits for the player to click next on the guard dialogue
+ */
+async function nextButton() {
+    return new Promise((resolve) => {
+        var wait = setInterval(function() {
+            if (dialogueNext) {
+                clearInterval(wait);
+                resolve();
+            }
+        }, 20);
+    });
+}
+
+/**
+ * This function is called when guard is selected.
+ * If guard has not been selected before, a dialogue appears.
+ */
+async function guard() {
+    if (firstTimeGuard) {
+        firstTimeGuard = false;
+        setUI(false,'action_select', 'd-flex flex-column')
+        setUI(true,'dialogue_ui_container')
+        setUI(true, 'dialogue_guard')
+        await nextButton();
+    }
+    alert('guard!')
+}
+
+// JQuery, handles onclick events of various elemetns
 $(document).ready(function(){
     $('div#back_button').click(function(){
         setUI(false,'skill_select', 'd-flex flex-column')
@@ -42,10 +75,28 @@ $(document).ready(function(){
         toggleUI('skill_select', 'd-flex flex-column')
         toggleUI('back_button')
     });
+    $('div#guard').click(function(){
+        dialogueNext = false;
+        guard();
+    });
+    
     $('div#item').click(function(){
         toggleUI('item_select', 'd-flex flex-column')
         toggleUI('back_button')
     });
+    $('div#escape').click(function(){
+        setUI(false,'action_select', 'd-flex flex-column')
+        setUI(true,'dialogue_ui_container')
+        setUI(true, 'dialogue_escape')
+    });
+    $('div#dialogue_next_button').click(function(){
+        dialogueNext = true;
+        setUI(true,'action_select', 'd-flex flex-column')
+        setUI(false, 'dialogue_ui_container')
+        setUI(false, 'dialogue_guard')
+        setUI(false, 'dialogue_escape')
+    });
+    
 });
 
 
