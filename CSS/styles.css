@@ -189,3 +189,31 @@
     font-family: 'Courier New', Courier, monospace;
     padding-left: 40px;
 }
+
+#select_text{
+    position: absolute;
+    margin-top: -530px;
+    margin-left: 450px;
+}
+
+#select_enemy {
+    margin-left: 745px;
+    margin-top: -573px;
+    position: absolute;
+    width: 220px;
+    height: 305px;
+}
+#select_enemy:hover {
+    border: 3px solid black;
+}
+
+#select_player {
+    margin-left: 114px;
+    margin-top: -390px;
+    position: absolute;
+    width: 220px;
+    height: 305px;
+}
+#select_player:hover {
+    border: 3px solid black;
+}

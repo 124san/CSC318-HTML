@@ -2,6 +2,9 @@
 "use strict";
 var firstTimeGuard = true;
 var dialogueNext = false;
+var usingSkill = false;
+var skillCost = 20;
+var maxHP = 100;
 /**
  * Toggle the visibility of an element given ID
  * @param {*} elementID id of the element
@@ -57,32 +60,118 @@ async function guard() {
         setUI(true, 'dialogue_guard')
         await nextButton();
     }
-    alert('guard!')
+    thisPlayer.guard = true;
+    setUI(false,'action_select', 'd-flex flex-column')
+    setTimeout(() => {
+        switchTurns(enemy.name, () => {
+            alert(`${thisPlayer.name} is guarding the incoming attack!`);
+            thisPlayer.guard = true;
+        })
+        setTimeout(() => {
+            enemy.doAttack(thisPlayer, "Normal Attack");
+            resetUI();
+        }, 1500);
+        
+    }, 1500);
+}
+
+// Reset UI to original state
+function resetUI() {
+    setUI(false,'skill_select', 'd-flex flex-column')
+    setUI(false,'target_select', 'd-flex flex-column')
+    setUI(false,'item_select', 'd-flex flex-column')
+    setUI(true,'action_select', 'd-flex flex-column')
+    setUI(false, 'target_select')
+    setUI(false, 'back_button')
+    usingSkill = false;
 }
 
 // JQuery, handles onclick events of various elemetns
 $(document).ready(function(){
     $('div#back_button').click(function(){
-        setUI(false,'skill_select', 'd-flex flex-column')
-        setUI(false,'item_select', 'd-flex flex-column')
-        setUI(true,'action_select', 'd-flex flex-column')
-        setUI(false, 'back_button')
+        resetUI()
     });
     $('div#attack').click(function(){
-        alert("attack!");
+        setUI(true, 'target_select')
+        setUI(true, 'select_enemy_text')
+        setUI(true, 'select_enemy')
+        setUI(false, 'select_player')
+        setUI(false, 'select_player_text')
+        setUI(false,'action_select', 'd-flex flex-column')
+        setUI(true, 'back_button')
     });
     $('div#skill').click(function(){
         toggleUI('skill_select', 'd-flex flex-column')
         toggleUI('back_button')
     });
+    $('div#blade_bash').click(function(){
+        if (thisPlayer.mp < skillCost) {
+            alert("You don't have enough SP!");
+        }
+        else {
+            setUI(true, 'target_select')
+            setUI(true, 'select_enemy_text')
+            setUI(false, 'select_player_text')
+            setUI(false,'action_select', 'd-flex flex-column')
+            setUI(false,'skill_select', 'd-flex flex-column')
+            setUI(true, 'back_button')
+            usingSkill = true;
+        }
+    });
     $('div#guard').click(function(){
         dialogueNext = false;
         guard();
+    });
+
+    $('div#select_enemy').click(function(){
+        setUI(false, 'target_select')
+        var attackName = "Normal Attack"
+        if (usingSkill) {
+            attackName = "Blade Bash";
+        }
+
+        setTimeout(() => {
+            thisPlayer.doAttack(enemy, attackName);
+            setTimeout(() => {
+                enemy.doAttack(thisPlayer, "Normal Attack");
+                resetUI();
+            }, 1500);
+            
+        }, 1500);
+
     });
     
     $('div#item').click(function(){
         toggleUI('item_select', 'd-flex flex-column')
         toggleUI('back_button')
+    });
+    $('div#potion').click(function(){
+        setUI(true, 'target_select')
+        setUI(false, 'select_enemy_text')
+        setUI(false, 'select_enemy')
+        setUI(true, 'select_player')
+        setUI(true, 'select_player_text')
+        setUI(false,'action_select', 'd-flex flex-column')
+        setUI(false,'item_select', 'd-flex flex-column')
+        setUI(true, 'back_button')
+    });
+    $('div#select_player').click(function(){
+        setUI(false, 'target_select')
+
+        setTimeout(() => {
+            switchTurns(enemy.name, () => {
+                alert(`${thisPlayer.name} uses potion on ${thisPlayer.name}! ${thisPlayer.name} is healed for 80HP!`);
+                thisPlayer.hp = Math.min(thisPlayer.hp+80, maxHP);
+            })
+            setTimeout(() => {
+                enemy.doAttack(thisPlayer, "Normal Attack");
+                resetUI();
+                setUI(false, "potion")
+                setUI(true, "no_item", "p-2");
+            }, 1500);
+            
+        }, 1500);
+
     });
     $('div#escape').click(function(){
         setUI(false,'action_select', 'd-flex flex-column')
@@ -109,8 +198,22 @@ $(document).ready(function(){
 function switchTurns(opponentName, callback){
     callback();
     let topBanner = document.getElementById("turn_counter").innerHTML;
-    let newBanner = (topBanner == "Your turn!")? `${opponentName}'s turn!`: "Your turn!";
+    let newBanner = (topBanner === "Your turn!")? `${opponentName}'s turn!`: "Your turn!";
     document.getElementById("turn_counter").innerHTML = newBanner;
+    if(newBanner === "Your turn!") {
+        thisPlayer.guard = false;
+    }
+    updateBars()
+}
+
+/**
+ * Update player and enemy's HP,MP bar
+ */
+function updateBars() {
+    $('#enemy_hp_bar').css('width', enemy.hp+'%').attr('aria-valuenow', enemy.hp)
+    $('#player_hp_bar').css('width', thisPlayer.hp+'%').attr('aria-valuenow', thisPlayer.hp)
+    $('#enemy_mp_bar').css('width', enemy.mp+'%').attr('aria-valuenow', enemy.mp)
+    $('#player_mp_bar').css('width', thisPlayer.mp+'%').attr('aria-valuenow', thisPlayer.mp)
 }
 
 class Attack {
@@ -132,12 +235,10 @@ class Item {
      * A class to manage all items for a given person.
      * @param {String} name Name of the item.
      * @param {String} type Type of the item.
-     * @param {int} hpEffect Effect of the item on player HP
-     * @param {int} mpEffect Effect of the item on player MP
+     * @param {int} effect Effect of the item on player HP
      */
-    constructor(name, type, hpEffect, mpEffect){
+    constructor(name, type, effect){
         this.name = name;
-        this.type = type;
         this.effect = effect;
     }
 }
@@ -155,6 +256,7 @@ class Player {
         this.name = name;
         this.hp = hp;
         this.mp = mp;
+        this.guard = false;
         this.attackArray = attackArray;
         this.itemArray = itemArray;
     }
@@ -168,17 +270,16 @@ class Player {
     doAttack(opponent, attackName){
         const attack = this.attackArray.filter(attack => attack.name == attackName)[0];
         this.mp -= attack.cost;
-        opponent.hp -= attack.damage;
+        var damage = attack.damage;
+        if (opponent.guard) damage /= 2;
+        opponent.hp -= damage;
         switchTurns(opponent.name,() => {
-            alert(`${this.name} attacked ${opponent.name} using ${attackName}!`);
-        });
-    }
-
-    guardAttack(opponent, incomingAttack){
-        const attack = opponent.attackArray.filter(att => att.name == incomingAttack)[0];
-        this.mp -= attack.damage * 0.1;
-        switchTurns(this.name, () => {
-            alert(`${this.name} guarded against ${opponent.name}'s attack: ${incomingAttack}!`);
+            alert(`${this.name} attacked ${opponent.name} using ${attackName}! ${opponent.name} takes ${damage} damage!`);
+            console.log(opponent);
         });
     }
 }
+
+// Define player and enemy
+var thisPlayer = new Player("Player", maxHP, 100, [new Attack("Normal Attack", 0, 40), new Attack("Blade Bash", skillCost, 60)], [new Item("Potion", 80)]);
+var enemy = new Player("Troublesome Guy", maxHP, 100, [new Attack("Normal Attack", 0, 20)], []);
