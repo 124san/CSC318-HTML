@@ -167,3 +167,9 @@
     height: 53px;
     z-index: 3;
 }
+
+#turn_counter{
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    padding-left: 40px;
+}

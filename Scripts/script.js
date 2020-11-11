@@ -47,3 +47,18 @@ $(document).ready(function(){
         toggleUI('back_button')
     });
 });
+
+
+/**
+ * Mechanism to switch turns. 
+ * Takes a callback to execute other things whenever the 
+ * turn is supposed to switch.
+ */
+
+ function switchTurns(opponentName, callback){
+     let topBanner = document.getElementById("turn_counter").innerHTML;
+     let newBanner = (topBanner == "Your turn!")? `${opponentName}'s turn!`: "Your turn!";
+     document.getElementById("turn_counter").innerHTML = newBanner;
+     callback();
+ }
+ 
