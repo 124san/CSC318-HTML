@@ -111,6 +111,8 @@ $(document).ready(function(){
         else {
             setUI(true, 'target_select')
             setUI(true, 'select_enemy_text')
+            setUI(true, 'select_enemy')
+            setUI(false, 'select_player')
             setUI(false, 'select_player_text')
             setUI(false,'action_select', 'd-flex flex-column')
             setUI(false,'skill_select', 'd-flex flex-column')
