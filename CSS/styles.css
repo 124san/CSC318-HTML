@@ -81,15 +81,18 @@
 }
 #p1 img{
     position: fixed;
-    margin-left: 750px;
+    margin-left: 800px;
     margin-top: 20px;
-    width:200px;
+    width:150px;
     height:300px;
 }
 #p2{
     position: absolute;
     margin-top: 200px;
-    margin-left:75px;
+    margin-left:180px;
+}
+#p2 img{
+    width:90px;
 }
 .d-flex.flex-column {
     background-color: white;
@@ -199,10 +202,10 @@
 }
 
 #select_enemy {
-    margin-left: 745px;
+    margin-left: 800px;
     margin-top: -573px;
     position: absolute;
-    width: 220px;
+    width: 155px;
     height: 305px;
 }
 #select_enemy:hover {
@@ -210,11 +213,11 @@
 }
 
 #select_player {
-    margin-left: 114px;
-    margin-top: -390px;
+    margin-left: 170px;
+    margin-top: -400px;
     position: absolute;
-    width: 220px;
-    height: 305px;
+    width: 110px;
+    height: 310px;
 }
 #select_player:hover {
     border: 3px solid black;
