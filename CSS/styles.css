@@ -6,6 +6,7 @@
 
 #enemy_portrait_container {
     /* float: right; */
+    background-color: orangered;
     position: absolute;
     margin-left: 1037px;
     border-bottom: 3px solid black;
@@ -14,6 +15,7 @@
 
 #player_portrait_container {
     /* float: right; */
+    background-color: cyan;
     position: absolute;
     border-top: 3px solid black;
     border-right: 3px solid black;
