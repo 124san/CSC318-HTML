@@ -18,11 +18,11 @@
             <div class="col-6">
             </div>
             <div class="col-5" id="enemy_bar">
-                <div class="progress hp_bar">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress hp_bar" >
+                    <div class="progress-bar bg-success" id="enemy_hp_bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <div class="progress mp_bar">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress mp_bar" >
+                    <div class="progress-bar bg-info" id="enemy_mp_bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
             <div class="col-1">
@@ -55,17 +55,17 @@
         </div>
         <div class="row" id="bottom">
             <div id="player_portrait_container">
-                <img class="portrait" src="./Images/d_colon.png" alt="Enemy Portrait">
+                <img class="portrait" src="./Images/d_colon.png" alt="Player Portrait">
             </div>
             <div class="col-1">
                 
             </div>
             <div class="col-5" id="player_bar">
-                <div class="progress hp_bar">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress hp_bar" >
+                    <div class="progress-bar bg-success" id="player_hp_bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <div class="progress mp_bar">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress mp_bar" >
+                    <div class="progress-bar bg-info" id="player_mp_bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
             <div class="col-6">
@@ -101,13 +101,32 @@
         </div>
         <!-- Skill Selection -->
         <div class="d-none" id="item_select">
-            <div class="p-2" id="potion">🧴Potion &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="p-2" id="potion">🧴Potion &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+80HP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 x1
+            </div>
+            <div class="d-none" id="no_item">
+                (No items)
             </div>
         </div>
         <!-- Back button. Not visible due to "d-none" -->
         <div class="d-none" id="back_button">
             Back
+        </div>
+        <!-- Select target for attack, skill and item -->
+        <div class="d-none" id="target_select">
+            <div id="select_text">
+                <h3 id="select_enemy_text">Select an Enemy</h3>
+                <h3 class="d-none" id="select_player_text">Select an Ally</h3>
+            </div>
+
+            <div id="select_enemy">
+
+            </div>
+
+            <div id="select_player">
+
+            </div>
+            
         </div>
         
     </div>
