@@ -14,8 +14,8 @@ This is the Battle UI hi-fi prototype of our RPG Project in course CSC318.
 - [x] "Guard" functionality
 - [X] "Item" functionality
 - [X] "Skills" functionality
-- [ ] Choose target functionality
+- [x] Choose target functionality
 - [x] "Guard" Dialogue
 - [x] "Escape" Dialogue
-- [ ] Interactive combat system implemented with JavaScript
+- [x] Interactive combat system implemented with JavaScript
 

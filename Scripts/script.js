@@ -134,10 +134,24 @@ $(document).ready(function(){
 
         setTimeout(() => {
             thisPlayer.doAttack(enemy, attackName);
-            setTimeout(() => {
-                enemy.doAttack(thisPlayer, "Normal Attack");
-                resetUI();
-            }, 1500);
+            if (enemy.hp <= 0) {
+                // Player wins. Show result window and remove other windows
+                setUI(false,'skill_select', 'd-flex flex-column')
+                setUI(false,'target_select', 'd-flex flex-column')
+                setUI(false,'item_select', 'd-flex flex-column')
+                setUI(false,'action_select', 'd-flex flex-column')
+                setUI(false, 'target_select')
+                setUI(false, 'back_button')
+                setUI(false, 'p1')
+                setUI(false, 'turn_counter')
+                setUI(true, "battle_result")
+            }
+            else {
+                setTimeout(() => {
+                    enemy.doAttack(thisPlayer, "Normal Attack");
+                    resetUI();
+                }, 1500);
+            }
             
         }, 1500);
 
@@ -285,3 +299,4 @@ class Player {
 // Define player and enemy
 var thisPlayer = new Player("Player", maxHP, 100, [new Attack("Normal Attack", 0, 40), new Attack("Blade Bash", skillCost, 60)], [new Item("Potion", 80)]);
 var enemy = new Player("Troublesome Guy", maxHP, 100, [new Attack("Normal Attack", 0, 20)], []);
+
