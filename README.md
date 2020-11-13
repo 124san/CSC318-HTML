@@ -20,8 +20,8 @@ This is the Battle UI hi-fi prototype of our RPG Project in course CSC318.
 - [x] Interactive combat system implemented with JavaScript
 - [x] Add text that shows HP and SP at each bars. They should be updated each time the value is changed. (We use SP instead of MP according to the heuristic evaluation meeting)
 - [ ] Add "Click to choose an action" at the action selection screen like in the lo-fi prototype
-- [ ] Add turn number counter
+- [x] Add turn number counter
 These tasks need to be consistent with the Figma prototype, so do these after we're sure what our figures look like
-- [ ] Replace figures to the ones that matches the figma prototype
-- [ ] Replace "D:" placeholder portraits with the portrait of the figures. These portraits need to have a transparent background to show player and enemy's color.
+- [x] Replace figures to the ones that matches the figma prototype
+- [x] Replace "D:" placeholder portraits with the portrait of the figures. These portraits need to have a transparent background to show player and enemy's color.
 

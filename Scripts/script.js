@@ -5,6 +5,7 @@ var dialogueNext = false;
 var usingSkill = false;
 var skillCost = 20;
 var maxHP = 100;
+let numTurn = 1;
 const enemyHPTag = "enemy_hp_bar";
 const playerHPTag = "player_hp_bar";
 const playerMPTag = "player_mp_bar";
@@ -217,6 +218,7 @@ $(document).ready(function(){
 
 function switchTurns(opponentName, callback){
     callback();
+    numTurn += 1
     let topBanner = document.getElementById("turn_counter").innerHTML;
     let newBanner = (topBanner === "Your turn!")? `${opponentName}'s turn!`: "Your turn!";
     document.getElementById("turn_counter").innerHTML = newBanner;
