@@ -18,7 +18,7 @@ This is the Battle UI hi-fi prototype of our RPG Project in course CSC318.
 - [x] "Guard" Dialogue
 - [x] "Escape" Dialogue
 - [x] Interactive combat system implemented with JavaScript
-- [ ] Add text that shows HP and SP at each bars. They should be updated each time the value is changed. (We use SP instead of MP according to the heuristic evaluation meeting)
+- [x] Add text that shows HP and SP at each bars. They should be updated each time the value is changed. (We use SP instead of MP according to the heuristic evaluation meeting)
 - [ ] Add "Click to choose an action" at the action selection screen like in the lo-fi prototype
 - [ ] Add turn number counter
 These tasks need to be consistent with the Figma prototype, so do these after we're sure what our figures look like

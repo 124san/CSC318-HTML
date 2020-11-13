@@ -5,6 +5,10 @@ var dialogueNext = false;
 var usingSkill = false;
 var skillCost = 20;
 var maxHP = 100;
+const enemyHPTag = "enemy_hp_bar";
+const playerHPTag = "player_hp_bar";
+const playerMPTag = "player_mp_bar";
+
 /**
  * Toggle the visibility of an element given ID
  * @param {*} elementID id of the element
@@ -68,7 +72,7 @@ async function guard() {
             thisPlayer.guard = true;
         })
         setTimeout(() => {
-            enemy.doAttack(thisPlayer, "Normal Attack");
+            enemy.doAttack(thisPlayer, "Normal Attack", playerHPTag, null);
             resetUI();
         }, 1500);
         
@@ -133,7 +137,7 @@ $(document).ready(function(){
         }
 
         setTimeout(() => {
-            thisPlayer.doAttack(enemy, attackName);
+            thisPlayer.doAttack(enemy, attackName, enemyHPTag, playerMPTag);
             if (enemy.hp <= 0) {
                 // Player wins. Show result window and remove other windows
                 setUI(false,'skill_select', 'd-flex flex-column')
@@ -148,7 +152,7 @@ $(document).ready(function(){
             }
             else {
                 setTimeout(() => {
-                    enemy.doAttack(thisPlayer, "Normal Attack");
+                    enemy.doAttack(thisPlayer, "Normal Attack", playerHPTag, null);
                     resetUI();
                 }, 1500);
             }
@@ -180,7 +184,7 @@ $(document).ready(function(){
                 thisPlayer.hp = Math.min(thisPlayer.hp+80, maxHP);
             })
             setTimeout(() => {
-                enemy.doAttack(thisPlayer, "Normal Attack");
+                enemy.doAttack(thisPlayer, "Normal Attack", playerHPTag, null);
                 resetUI();
                 setUI(false, "potion")
                 setUI(true, "no_item", "p-2");
@@ -283,12 +287,14 @@ class Player {
      * and the amount of MP to subtract from you.
      * Also updates the UI, and switches turns. 
      */
-    doAttack(opponent, attackName){
+    doAttack(opponent, attackName, hptag, mptag){
         const attack = this.attackArray.filter(attack => attack.name == attackName)[0];
         this.mp -= attack.cost;
         var damage = attack.damage;
         if (opponent.guard) damage /= 2;
         opponent.hp -= damage;
+        document.getElementById(hptag).innerHTML = opponent.hp;
+        if (mptag !== null){ document.getElementById(mptag).innerHTML = this.mp;};
         switchTurns(opponent.name,() => {
             alert(`${this.name} attacked ${opponent.name} using ${attackName}! ${opponent.name} takes ${damage} damage!`);
             console.log(opponent);
