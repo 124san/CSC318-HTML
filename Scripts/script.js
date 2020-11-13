@@ -219,6 +219,7 @@ $(document).ready(function(){
 function switchTurns(opponentName, callback){
     callback();
     numTurn += 1
+    document.getElementById("turn_counter_2").innerHTML = `Turn ${numTurn}`
     let topBanner = document.getElementById("turn_counter").innerHTML;
     let newBanner = (topBanner === "Your turn!")? `${opponentName}'s turn!`: "Your turn!";
     document.getElementById("turn_counter").innerHTML = newBanner;
