@@ -259,3 +259,8 @@
     border: 3px solid black;
     cursor: pointer;
 }
+#option_banner {
+    position: absolute;
+    margin-top: 400px;
+    margin-left: 540px;
+}

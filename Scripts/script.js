@@ -63,6 +63,7 @@ async function guard() {
         setUI(false,'action_select', 'd-flex flex-column')
         setUI(true,'dialogue_ui_container')
         setUI(true, 'dialogue_guard')
+        setUI(false, 'option_banner')
         await nextButton();
     }
     thisPlayer.guard = true;
@@ -90,6 +91,7 @@ function resetUI() {
     setUI(true,'action_select', 'd-flex flex-column')
     setUI(false, 'target_select')
     setUI(false, 'back_button')
+    setUI(true, 'option_banner')
     usingSkill = false;
 }
 
@@ -106,10 +108,12 @@ $(document).ready(function(){
         setUI(false, 'select_player_text')
         setUI(false,'action_select', 'd-flex flex-column')
         setUI(true, 'back_button')
+        setUI(false, 'option_banner')
     });
     $('div#skill').click(function(){
         toggleUI('skill_select', 'd-flex flex-column')
         toggleUI('back_button')
+        setUI(false, 'option_banner')
     });
     $('div#blade_bash').click(function(){
         if (thisPlayer.mp < skillCost) {
@@ -124,6 +128,7 @@ $(document).ready(function(){
             setUI(false,'action_select', 'd-flex flex-column')
             setUI(false,'skill_select', 'd-flex flex-column')
             setUI(true, 'back_button')
+            setUI(false, 'option_banner')
             usingSkill = true;
         }
     });
@@ -169,6 +174,7 @@ $(document).ready(function(){
     $('div#item').click(function(){
         toggleUI('item_select', 'd-flex flex-column')
         toggleUI('back_button')
+        setUI(false, 'option_banner')
     });
     $('div#potion').click(function(){
         setUI(true, 'target_select')
@@ -204,6 +210,7 @@ $(document).ready(function(){
         setUI(false,'action_select', 'd-flex flex-column')
         setUI(true,'dialogue_ui_container')
         setUI(true, 'dialogue_escape')
+        setUI(false, 'option_banner')
     });
     $('div#dialogue_next_button').click(function(){
         dialogueNext = true;
@@ -211,6 +218,7 @@ $(document).ready(function(){
         setUI(false, 'dialogue_ui_container')
         setUI(false, 'dialogue_guard')
         setUI(false, 'dialogue_escape')
+        setUI(true, 'option_banner')
     });
     
 });
