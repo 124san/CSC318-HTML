@@ -300,8 +300,8 @@ class Player {
         var damage = attack.damage;
         if (opponent.guard) damage /= 2;
         opponent.hp -= damage;
-        document.getElementById(hptag).innerHTML = opponent.hp;
-        if (mptag !== null){ document.getElementById(mptag).innerHTML = this.mp;};
+        document.getElementById(hptag).innerHTML = `HP:${opponent.hp}/100`;
+        if (mptag !== null){ document.getElementById(mptag).innerHTML = `SP:${this.mp}/100`;};
         switchTurns(opponent.name,() => {
             alert(`${this.name} attacked ${opponent.name} using ${attackName}! ${opponent.name} takes ${damage} damage!`);
             console.log(opponent);
