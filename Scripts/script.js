@@ -75,6 +75,8 @@ async function guard() {
         setTimeout(() => {
             enemy.doAttack(thisPlayer, "Normal Attack", playerHPTag, null);
             resetUI();
+            numTurn += 1
+            document.getElementById("turn_counter_2").innerHTML = `Turn ${numTurn}`
         }, 1500);
         
     }, 1500);
@@ -155,6 +157,8 @@ $(document).ready(function(){
                 setTimeout(() => {
                     enemy.doAttack(thisPlayer, "Normal Attack", playerHPTag, null);
                     resetUI();
+                    numTurn += 1
+                    document.getElementById("turn_counter_2").innerHTML = `Turn ${numTurn}`
                 }, 1500);
             }
             
@@ -189,6 +193,8 @@ $(document).ready(function(){
                 resetUI();
                 setUI(false, "potion")
                 setUI(true, "no_item", "p-2");
+                numTurn += 1
+                document.getElementById("turn_counter_2").innerHTML = `Turn ${numTurn}`
             }, 1500);
             
         }, 1500);
@@ -218,8 +224,6 @@ $(document).ready(function(){
 
 function switchTurns(opponentName, callback){
     callback();
-    numTurn += 1
-    document.getElementById("turn_counter_2").innerHTML = `Turn ${numTurn}`
     let topBanner = document.getElementById("turn_counter").innerHTML;
     let newBanner = (topBanner === "Your turn!")? `${opponentName}'s turn!`: "Your turn!";
     document.getElementById("turn_counter").innerHTML = newBanner;
