@@ -161,6 +161,7 @@ $(document).ready(function(){
                 setUI(false, 'p1')
                 setUI(false, 'turn_counter')
                 setUI(true, "battle_result")
+                bgm.pause();
                 victorySound.play();
             }
             else {
