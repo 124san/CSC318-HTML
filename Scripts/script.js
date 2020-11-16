@@ -68,6 +68,7 @@ async function guard() {
     }
     thisPlayer.guard = true;
     setUI(false,'action_select', 'd-flex flex-column')
+    setUI(false, 'option_banner')
     setTimeout(() => {
         switchTurns(enemy.name, () => {
             alert(`${thisPlayer.name} is guarding the incoming attack!`);
