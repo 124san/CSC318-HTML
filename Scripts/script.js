@@ -71,10 +71,12 @@ async function guard() {
     setUI(false, 'option_banner')
     setTimeout(() => {
         switchTurns(enemy.name, () => {
+            guardSound.play();
             alert(`${thisPlayer.name} is guarding the incoming attack!`);
             thisPlayer.guard = true;
         })
         setTimeout(() => {
+            attackSound.play();
             enemy.doAttack(thisPlayer, "Normal Attack", playerHPTag, null);
             resetUI();
             numTurn += 1
@@ -146,6 +148,7 @@ $(document).ready(function(){
         }
 
         setTimeout(() => {
+            attackSound.play();
             thisPlayer.doAttack(enemy, attackName, enemyHPTag, playerMPTag);
             if (enemy.hp <= 0) {
                 // Player wins. Show result window and remove other windows
@@ -158,9 +161,11 @@ $(document).ready(function(){
                 setUI(false, 'p1')
                 setUI(false, 'turn_counter')
                 setUI(true, "battle_result")
+                victorySound.play();
             }
             else {
                 setTimeout(() => {
+                    attackSound.play();
                     enemy.doAttack(thisPlayer, "Normal Attack", playerHPTag, null);
                     resetUI();
                     numTurn += 1
@@ -192,10 +197,12 @@ $(document).ready(function(){
 
         setTimeout(() => {
             switchTurns(enemy.name, () => {
+                healSound.play();
                 alert(`${thisPlayer.name} uses potion on ${thisPlayer.name}! ${thisPlayer.name} is healed for 80HP!`);
                 thisPlayer.hp = Math.min(thisPlayer.hp+80, maxHP);
             })
             setTimeout(() => {
+                attackSound.play();
                 enemy.doAttack(thisPlayer, "Normal Attack", playerHPTag, null);
                 resetUI();
                 setUI(false, "potion")
@@ -318,7 +325,33 @@ class Player {
     }
 }
 
+// Sound constructor
+class sound {
+    constructor(src) {
+        this.sound = document.createElement("audio");
+        this.sound.src = src;
+        this.sound.setAttribute("preload", "auto");
+        this.sound.setAttribute("controls", "none");
+        this.sound.style.display = "none";
+        document.body.appendChild(this.sound);
+        this.play = function () {
+            this.sound.play();
+        };
+        this.stop = function () {
+            this.sound.pause();
+        };
+    }
+}
+
+
 // Define player and enemy
 var thisPlayer = new Player("Player", maxHP, 100, [new Attack("Normal Attack", 0, 40), new Attack("Blade Bash", skillCost, 60)], [new Item("Potion", 80)]);
 var enemy = new Player("Troublesome Guy", maxHP, 100, [new Attack("Normal Attack", 0, 20)], []);
 
+// sound objects
+var attackSound = new sound("./Audio/Sword3.ogg");
+var guardSound = new sound("./Audio/Guard.ogg");
+var healSound = new sound("./Audio/Heal3.ogg");
+var victorySound = new sound("./Audio/Victory1.ogg");
+var bgm = new sound("./Audio/bgm.ogg");
+bgm.play();
