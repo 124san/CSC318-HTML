@@ -3,10 +3,12 @@
 var firstTimeGuard = true;
 var dialogueNext = false;
 var usingSkill = false;
-var skillCost = 20;
+var bladeBashCost = 50;
+var normalAttackCost = 30;
 var maxHP = 100;
 let numTurn = 1;
 const enemyHPTag = "enemy_hp_bar";
+const enemyMPTag = "enemy_mp_bar";
 const playerHPTag = "player_hp_bar";
 const playerMPTag = "player_mp_bar";
 
@@ -74,7 +76,7 @@ async function guard() {
             thisPlayer.guard = true;
         })
         setTimeout(() => {
-            enemy.doAttack(thisPlayer, "Normal Attack", playerHPTag, null);
+            enemy.doAttack(thisPlayer, "Normal Attack", playerHPTag, enemyMPTag);
             resetUI();
             numTurn += 1
             document.getElementById("turn_counter_2").innerHTML = `Turn ${numTurn}`
@@ -101,22 +103,28 @@ $(document).ready(function(){
         resetUI()
     });
     $('div#attack').click(function(){
-        setUI(true, 'target_select')
-        setUI(true, 'select_enemy_text')
-        setUI(true, 'select_enemy')
-        setUI(false, 'select_player')
-        setUI(false, 'select_player_text')
-        setUI(false,'action_select', 'd-flex flex-column')
-        setUI(true, 'back_button')
-        setUI(false, 'option_banner')
-    });
-    $('div#skill').click(function(){
         toggleUI('skill_select', 'd-flex flex-column')
         toggleUI('back_button')
         setUI(false, 'option_banner')
     });
+    $('div#normal_skill').click(() => {
+        if (thisPlayer.mp < normalAttackCost) {
+            alert("You don't have enough SP!");
+        }
+        else {
+            setUI(true, 'target_select')
+            setUI(true, 'select_enemy_text')
+            setUI(true, 'select_enemy')
+            setUI(false, 'select_player')
+            setUI(false, 'select_player_text')
+            setUI(false,'action_select', 'd-flex flex-column')
+            setUI(false,'skill_select', 'd-flex flex-column')
+            setUI(true, 'back_button')
+            setUI(false, 'option_banner')
+        }
+    })
     $('div#blade_bash').click(function(){
-        if (thisPlayer.mp < skillCost) {
+        if (thisPlayer.mp < bladeBashCost) {
             alert("You don't have enough SP!");
         }
         else {
@@ -160,7 +168,7 @@ $(document).ready(function(){
             }
             else {
                 setTimeout(() => {
-                    enemy.doAttack(thisPlayer, "Normal Attack", playerHPTag, null);
+                    enemy.doAttack(thisPlayer, "Normal Attack", playerHPTag, enemyMPTag);
                     resetUI();
                     numTurn += 1
                     document.getElementById("turn_counter_2").innerHTML = `Turn ${numTurn}`
@@ -318,6 +326,6 @@ class Player {
 }
 
 // Define player and enemy
-var thisPlayer = new Player("Player", maxHP, 100, [new Attack("Normal Attack", 0, 40), new Attack("Blade Bash", skillCost, 60)], [new Item("Potion", 80)]);
-var enemy = new Player("Troublesome Guy", maxHP, 100, [new Attack("Normal Attack", 0, 20)], []);
+var thisPlayer = new Player("Player", maxHP, 100, [new Attack("Normal Attack", normalAttackCost, 40), new Attack("Blade Bash", bladeBashCost, 60)], [new Item("Potion", 80)]);
+var enemy = new Player("Troublesome Guy", maxHP, 100, [new Attack("Normal Attack", normalAttackCost, 40)], []);
 
