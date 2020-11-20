@@ -3,6 +3,7 @@
 var firstTimeGuard = true;
 var dialogueNext = false;
 var usingSkill = false;
+var guarding = false;
 var skillCost = 20;
 var maxHP = 100;
 let numTurn = 1;
@@ -107,6 +108,7 @@ $(document).ready(function(){
         setUI(true, 'target_select')
         setUI(true, 'select_enemy_text')
         setUI(true, 'select_enemy')
+        setUI(false, 'guard_text')
         setUI(false, 'select_player')
         setUI(false, 'select_player_text')
         setUI(false,'action_select', 'd-flex flex-column')
@@ -136,8 +138,17 @@ $(document).ready(function(){
         }
     });
     $('div#guard').click(function(){
-        dialogueNext = false;
-        guard();
+        guarding = true;
+        setUI(false, 'option_banner')
+        setUI(true, 'target_select')
+        setUI(false, 'select_enemy_text')
+        setUI(false, 'select_enemy')
+        setUI(true, 'select_player')
+        setUI(false, 'select_player_text')
+        setUI(true,'guard_text')
+        setUI(false,'action_select', 'd-flex flex-column')
+        setUI(false,'item_select', 'd-flex flex-column')
+        setUI(true, 'back_button')
     });
 
     $('div#select_enemy').click(function(){
@@ -184,35 +195,46 @@ $(document).ready(function(){
         setUI(false, 'option_banner')
     });
     $('div#potion').click(function(){
+        guarding = false;
         setUI(true, 'target_select')
         setUI(false, 'select_enemy_text')
         setUI(false, 'select_enemy')
         setUI(true, 'select_player')
         setUI(true, 'select_player_text')
+        setUI(false,'guard_text')
         setUI(false,'action_select', 'd-flex flex-column')
         setUI(false,'item_select', 'd-flex flex-column')
         setUI(true, 'back_button')
     });
     $('div#select_player').click(function(){
+        
         setUI(false, 'target_select')
-
-        setTimeout(() => {
-            switchTurns(enemy.name, () => {
-                healSound.play();
-                alert(`${thisPlayer.name} uses potion on ${thisPlayer.name}! ${thisPlayer.name} is healed for 80HP!`);
-                thisPlayer.hp = Math.min(thisPlayer.hp+80, maxHP);
-            })
+        if (guarding) {
+            // guard
+            dialogueNext = false;
+            guard();
+        }
+        else {
+            // use item
             setTimeout(() => {
-                attackSound.play();
-                enemy.doAttack(thisPlayer, "Normal Attack", playerHPTag, null);
-                resetUI();
-                setUI(false, "potion")
-                setUI(true, "no_item", "p-2");
-                numTurn += 1
-                document.getElementById("turn_counter_2").innerHTML = `Turn ${numTurn}`
+                switchTurns(enemy.name, () => {
+                    healSound.play();
+                    alert(`${thisPlayer.name} uses potion on ${thisPlayer.name}! ${thisPlayer.name} is healed for 80HP!`);
+                    thisPlayer.hp = Math.min(thisPlayer.hp+80, maxHP);
+                })
+                setTimeout(() => {
+                    attackSound.play();
+                    enemy.doAttack(thisPlayer, "Normal Attack", playerHPTag, null);
+                    resetUI();
+                    setUI(false, "potion")
+                    setUI(true, "no_item", "p-2");
+                    numTurn += 1
+                    document.getElementById("turn_counter_2").innerHTML = `Turn ${numTurn}`
+                }, 1500);
+                
             }, 1500);
-            
-        }, 1500);
+        }
+        
 
     });
     $('div#escape').click(function(){
