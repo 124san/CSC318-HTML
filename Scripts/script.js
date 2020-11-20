@@ -353,7 +353,7 @@ class sound {
 
 // Define player and enemy
 var thisPlayer = new Player("Player", maxHP, 100, [new Attack("Normal Attack", normalAttackCost, 40), new Attack("Blade Bash", bladeBashCost, 60)], [new Item("Potion", 80)]);
-var enemy = new Player("Troublesome Guy", maxHP, 100, [new Attack("Normal Attack", normalAttackCost, 40)], []);
+var enemy = new Player("Troublesome Guy", maxHP, 100, [new Attack("Normal Attack", normalAttackCost, 50)], []);
 
 // sound objects
 var attackSound = new sound("./Audio/Sword3.ogg");
