@@ -183,6 +183,7 @@ $(document).ready(function(){
             }
             else {
                 setTimeout(() => {
+                    attackSound.play();
                     enemy.doAttack(thisPlayer, "Normal Attack", playerHPTag, enemyMPTag);
                     resetUI();
                     numTurn += 1
